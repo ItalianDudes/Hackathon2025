@@ -1,0 +1,46 @@
+/*
+Verde Scuro: #005E44;
+Verde Chiaro: #30AB66;
+*/
+
+.root {
+    -fx-accent: #30AB66;
+    -fx-selection-bar-non-focused: #005E44;
+}
+
+.list-view {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: tranparent;
+    -fx-border-color: #30AB66;
+    -fx-border-width: 2px;
+    -fx-border-radius: 4px;
+}
+
+.tab-pane {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: tranparent;
+    -fx-border-color: #30AB66;
+    -fx-border-width: 2px;
+    -fx-border-radius: 4px;
+}
+
+.list-view:focused {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: tranparent;
+}
+
+.list-cell:empty {
+    -fx-background-color: transparent;
+}
+
+.list-cell:empty:hover {
+    -fx-background-color: transparent;
+}
+
+.list-cell:selected:hover {
+    -fx-background-color: #30AB66;
+}
+
+.list-cell:hover {
+    -fx-background-color: #005E44;
+}
