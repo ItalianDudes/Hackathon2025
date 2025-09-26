@@ -34,15 +34,12 @@ public final class ControllerScenePanelMain {
     @FXML private TabPane tabPaneSector;
     @FXML private Tab tabAnalytics;
     @FXML private Tab tabTrends;
-    @FXML private Tab tabControls;
-    @FXML private Tab tabForecast;
     @FXML private Tab tabSensors;
     @FXML private Tab tabActuators;
 
     // Tab SceneControllers
     private SceneController sceneControllerAnalytics = null;
     private SceneController sceneControllerTrends = null;
-    private SceneController sceneControllerForecast = null;
     private SceneController sceneControllerSensors = null;
     private SceneController sceneControllerActuators = null;
 
@@ -60,12 +57,8 @@ public final class ControllerScenePanelMain {
         return (ControllerScenePanelTabActuators) sceneControllerActuators.getController();
     }
     @NotNull
-    public ControllerScenePanelTabGraphs getControllerTrends() {
+    public ControllerScenePanelTabGraphs getControllerGraphs() {
         return (ControllerScenePanelTabGraphs) sceneControllerTrends.getController();
-    }
-    @NotNull
-    public ControllerScenePanelTabForecast getControllerForecast() {
-        return (ControllerScenePanelTabForecast) sceneControllerForecast.getController();
     }
 
     // Initialize
@@ -99,9 +92,6 @@ public final class ControllerScenePanelMain {
 
         sceneControllerTrends = ScenePanelTabGraphs.getScene(this);
         tabTrends.setContent(sceneControllerTrends.getParent());
-
-        sceneControllerForecast = ScenePanelTabForecast.getScene(this);
-        tabForecast.setContent(sceneControllerForecast.getParent());
 
         sceneControllerSensors = ScenePanelTabSensors.getScene(this);
         tabSensors.setContent(sceneControllerSensors.getParent());
