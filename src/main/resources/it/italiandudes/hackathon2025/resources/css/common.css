@@ -48,3 +48,9 @@ Verde Chiaro: #30AB66;
 .list-cell:hover {
     -fx-background-color: #005E44;
 }
+
+.graph-container {
+    -fx-border-color: #30AB66;
+    -fx-border-width: 2px;
+    -fx-border-radius: 4px;
+}

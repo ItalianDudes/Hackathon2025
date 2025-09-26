@@ -1,10 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21.0.7" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.italiandudes.hackathon2025.javafx.controllers.panel.ControllerScenePanelTabGraphs">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/21.0.7" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.italiandudes.hackathon2025.javafx.controllers.panel.ControllerScenePanelTabGraphs">
    <padding>
       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
    </padding>
+   <children>
+      <GridPane layoutX="5.333333492279053" layoutY="5.333333492279053" vgap="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints valignment="CENTER" vgrow="NEVER" />
+            <RowConstraints valignment="CENTER" vgrow="ALWAYS" />
+         </rowConstraints>
+         <children>
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#updateSensorsCombobox" text="Aggiorna Lista Sensori">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Button>
+            <GridPane hgap="5.0" vgap="5.0" GridPane.rowIndex="1">
+              <columnConstraints>
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints valignment="CENTER" vgrow="NEVER" />
+                <RowConstraints valignment="CENTER" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <ComboBox fx:id="comboBoxSensor1" maxWidth="1.7976931348623157E308" onAction="#changeSensor1" promptText="Seleziona Sensore" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+                  <ComboBox fx:id="comboBoxSensor2" maxWidth="1.7976931348623157E308" onAction="#changeSensor2" promptText="Seleziona Sensore" style="-fx-font-size: 24px; -fx-font-weight: bold;" GridPane.columnIndex="1" />
+                  <AnchorPane fx:id="anchorPaneSensorGraph1" styleClass="graph-container" GridPane.rowIndex="1" />
+                  <AnchorPane fx:id="anchorPaneSensorGraph2" styleClass="graph-container" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+               </children>
+            </GridPane>
+         </children>
+      </GridPane>
+   </children>
 </AnchorPane>

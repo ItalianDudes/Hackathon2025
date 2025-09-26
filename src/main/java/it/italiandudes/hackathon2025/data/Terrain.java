@@ -101,17 +101,11 @@ public class Terrain implements IDatabaseInteractable {
     @Override
     public final boolean equals(Object o) {
         if (!(o instanceof Terrain terrain)) return false;
-
-        return getUuid() == terrain.getUuid() && getName().equals(terrain.getName()) && getOwner().equals(terrain.getOwner()) && getDimension().equals(terrain.getDimension()) && getSectors().equals(terrain.getSectors());
+        return getUuid() == terrain.getUuid();
     }
     @Override
     public int hashCode() {
-        int result = Long.hashCode(getUuid());
-        result = 31 * result + getName().hashCode();
-        result = 31 * result + getOwner().hashCode();
-        result = 31 * result + getDimension().hashCode();
-        result = 31 * result + getSectors().hashCode();
-        return result;
+        return Long.hashCode(getUuid());
     }
 
     // ToString

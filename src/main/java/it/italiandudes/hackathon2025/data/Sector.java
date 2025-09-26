@@ -12,7 +12,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 import java.util.ArrayList;
-import java.util.Objects;
 import java.util.UUID;
 
 @Getter
@@ -136,19 +135,17 @@ public class Sector implements IDatabaseInteractable {
     }
 
     // Equals&Hashcode
+
+
     @Override
     public final boolean equals(Object o) {
         if (!(o instanceof Sector sector)) return false;
-
-        return getUuid() == sector.getUuid() && getTerrain().equals(sector.getTerrain()) && Objects.equals(getName(), sector.getName()) && Objects.equals(getDimension(), sector.getDimension());
+        return getUuid() == sector.getUuid();
     }
+
     @Override
     public int hashCode() {
-        int result = Long.hashCode(getUuid());
-        result = 31 * result + getTerrain().hashCode();
-        result = 31 * result + Objects.hashCode(getName());
-        result = 31 * result + Objects.hashCode(getDimension());
-        return result;
+        return Long.hashCode(getUuid());
     }
 
     // ToString
