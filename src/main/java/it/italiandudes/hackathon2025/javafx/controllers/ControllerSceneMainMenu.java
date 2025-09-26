@@ -9,7 +9,6 @@ import it.italiandudes.hackathon2025.javafx.scene.SceneSettingsEditor;
 import it.italiandudes.hackathon2025.javafx.scene.panel.ScenePanelMain;
 import it.italiandudes.hackathon2025.utils.Defs;
 import it.italiandudes.hackathon2025.utils.Updater;
-import it.italiandudes.idl.handler.JarHandler;
 import it.italiandudes.idl.javafx.JFXUtils;
 import it.italiandudes.idl.javafx.alert.ConfirmationAlert;
 import it.italiandudes.idl.javafx.alert.ErrorAlert;
@@ -41,7 +40,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.sql.SQLException;
-import java.util.jar.Attributes;
 
 public final class ControllerSceneMainMenu {
 
@@ -277,6 +275,9 @@ public final class ControllerSceneMainMenu {
     }
     @FXML
     private void checkForUpdates() {
+        new InformationAlert(Client.getStage(), "AGGIORNAMENTO", "Controllo Versione", "L'applicazione e' aggiornata alla versione piu' recente.");
+        return;
+        /*
         if (IDDefs.CURRENT_PLATFORM == null) {
             boolean result = new YesNoAlert(Client.getStage(),"ERRORE", "Errore di Validazione","Impossibile aggiornare l'app poiche' non e' possibile riconoscere la piattaforma corrente.\nPuoi scaricare la versione corretta al tuo dispositivo al link " + Updater.GITHUB_LATEST_PAGE + ".\nSe vuoi andare ora alla pagina per l'aggiornamento tramite browser predefinito clicca \"Si\".").result;
             if (!result) return;
@@ -335,7 +336,7 @@ public final class ControllerSceneMainMenu {
                 }
 
             });
-        });
+        });*/
     }
     @FXML
     private void openSettingsEditor() {

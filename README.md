@@ -1,2 +1,2 @@
 # Hackathon2025
-A working basic project template for any new JavaFX21 project.
+Prototipo della challenge dell'azienda Drype Srl Water & Garden Solution.
