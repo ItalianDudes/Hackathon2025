@@ -81,11 +81,12 @@ public final class IntegerDataGenerator extends DataGenerator {
     public void run() {
         if (sensor == null) {
             Logger.log("IntegerDataGenerator execution blocked: sensor is null!");
+            return;
         }
 
         int currentValue = Randomizer.randomBetween(minValue, maxValue);
         dataset.add(currentValue);
-        System.out.println(currentValue);
+        // System.out.println(currentValue);
         while (DBManager.isConnectionOpen() && !sensor.isSensorDeleted()) {
             try {
                 Thread.sleep(generationInterval);
@@ -101,8 +102,8 @@ public final class IntegerDataGenerator extends DataGenerator {
             else if (nextValue < minValue) nextValue = minValue;
             dataset.add(nextValue);
             currentValue = nextValue;
-            System.out.println(currentValue);
+            // System.out.println(currentValue);
         }
-        Logger.log("IntegerDataGenerator terminated!");
+        // Logger.log("IntegerDataGenerator terminated!");
     }
 }

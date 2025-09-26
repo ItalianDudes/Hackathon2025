@@ -15,7 +15,7 @@ public abstract class DataGenerator implements Runnable {
 
     // Constants
     protected static final int DEFAULT_DATASET_SIZE = 20;
-    protected static final Duration DEFAULT_GENERATION_INTERVAL = Duration.of(3, ChronoUnit.SECONDS);
+    protected static final Duration DEFAULT_GENERATION_INTERVAL = Duration.of(750, ChronoUnit.MILLIS);
 
     // Attributes
     @Nullable protected Sensor sensor;

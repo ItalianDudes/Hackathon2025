@@ -82,23 +82,27 @@ public final class ControllerScenePanelTabGraphs extends ConfigurableTabControll
                 if (sensor.getOutputType() == DataType.INTEGER) {
                     List<Integer> dataset = ((IntegerDataGenerator) sensor.getDataGenerator()).getCurrentDataset();
                     XYChart.Series<Number, Number> series = new XYChart.Series<>();
-                    for (int i=0; i<dataset.size(); i++) {
-                        series.getData().add(new XYChart.Data<>(i, dataset.get(i)));
-                    }
-                    Platform.runLater(() -> {
-                        sensor1Chart.getData().clear();
-                        sensor1Chart.getData().add(series);
-                    });
+                    try {
+                        for (int i = 0; i < dataset.size(); i++) {
+                            series.getData().add(new XYChart.Data<>(i, dataset.get(i)));
+                        }
+                        Platform.runLater(() -> {
+                            sensor1Chart.getData().clear();
+                            sensor1Chart.getData().add(series);
+                        });
+                    } catch (Exception ignored) {}
                 } else if (sensor.getOutputType() == DataType.DOUBLE) {
                     List<Double> dataset = ((DoubleDataGenerator) sensor.getDataGenerator()).getCurrentDataset();
                     XYChart.Series<Number, Number> series = new XYChart.Series<>();
-                    for (int i=0; i<dataset.size(); i++) {
-                        series.getData().add(new XYChart.Data<>(i, dataset.get(i)));
-                    }
-                    Platform.runLater(() -> {
-                        sensor1Chart.getData().clear();
-                        sensor1Chart.getData().add(series);
-                    });
+                    try {
+                        for (int i = 0; i < dataset.size(); i++) {
+                            series.getData().add(new XYChart.Data<>(i, dataset.get(i)));
+                        }
+                        Platform.runLater(() -> {
+                            sensor1Chart.getData().clear();
+                            sensor1Chart.getData().add(series);
+                        });
+                    } catch (Exception ignored) {}
                 }
             }
         });

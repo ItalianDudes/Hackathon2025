@@ -82,10 +82,11 @@ public final class DoubleDataGenerator extends DataGenerator {
     public void run() {
         if (sensor == null) {
             Logger.log("DoubleDataGenerator execution blocked: sensor is null!");
+            return;
         }
         double currentValue = Randomizer.randomBetween(minValue, maxValue);
         dataset.add(currentValue);
-        System.out.println(currentValue);
+        // System.out.println(currentValue);
 
         while (DBManager.isConnectionOpen() && !sensor.isSensorDeleted()) {
             try {
@@ -102,8 +103,8 @@ public final class DoubleDataGenerator extends DataGenerator {
             else if (nextValue < minValue) nextValue = minValue;
             dataset.add(nextValue);
             currentValue = nextValue;
-            System.out.println(currentValue);
+            // System.out.println(currentValue);
         }
-        Logger.log("DoubleDataGenerator terminated!");
+        // Logger.log("DoubleDataGenerator terminated!");
     }
 }

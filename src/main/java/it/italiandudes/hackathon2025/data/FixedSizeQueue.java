@@ -38,7 +38,7 @@ public final class FixedSizeQueue<T> {
         return queue.getFirst();
     }
     public List<T> getDataList() {
-        return queue.stream().toList();
+        return queue;
     }
     public void add(T value) {
         if (queue.size() >= maxSize) {
