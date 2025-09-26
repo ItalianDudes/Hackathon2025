@@ -1,10 +1,10 @@
 package it.italiandudes.hackathon2025.javafx.utils;
 
+import it.italiandudes.hackathon2025.utils.Defs;
 import it.italiandudes.idl.handler.JarHandler;
 import it.italiandudes.idl.json.JSONManager;
 import it.italiandudes.idl.logger.Logger;
 import it.italiandudes.idl.starter.IDDefs;
-import it.italiandudes.hackathon2025.utils.Defs;
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONException;
 import org.json.JSONObject;

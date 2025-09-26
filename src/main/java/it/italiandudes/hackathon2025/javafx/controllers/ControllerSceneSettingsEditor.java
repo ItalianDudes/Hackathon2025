@@ -1,16 +1,16 @@
 package it.italiandudes.hackathon2025.javafx.controllers;
 
+import it.italiandudes.hackathon2025.javafx.Client;
+import it.italiandudes.hackathon2025.javafx.JFXDefs;
+import it.italiandudes.hackathon2025.javafx.scene.SceneMainMenu;
+import it.italiandudes.hackathon2025.javafx.utils.Settings;
+import it.italiandudes.hackathon2025.utils.Defs;
 import it.italiandudes.idl.common.ResourceGetter;
 import it.italiandudes.idl.javafx.alert.ErrorAlert;
 import it.italiandudes.idl.javafx.alert.InformationAlert;
 import it.italiandudes.idl.javafx.theme.BasicTheme;
 import it.italiandudes.idl.javafx.theme.BasicThemeHandler;
 import it.italiandudes.idl.logger.Logger;
-import it.italiandudes.hackathon2025.javafx.Client;
-import it.italiandudes.hackathon2025.javafx.JFXDefs;
-import it.italiandudes.hackathon2025.javafx.scene.SceneMainMenu;
-import it.italiandudes.hackathon2025.javafx.utils.Settings;
-import it.italiandudes.hackathon2025.utils.Defs;
 import javafx.application.Platform;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;

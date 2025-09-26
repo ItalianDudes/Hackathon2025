@@ -1,7 +1,11 @@
 package it.italiandudes.hackathon2025.javafx;
 
+import it.italiandudes.hackathon2025.Hackathon2025;
 import it.italiandudes.hackathon2025.db.DBManager;
 import it.italiandudes.hackathon2025.javafx.scene.SceneLoading;
+import it.italiandudes.hackathon2025.javafx.scene.SceneMainMenu;
+import it.italiandudes.hackathon2025.javafx.utils.Settings;
+import it.italiandudes.hackathon2025.utils.Defs;
 import it.italiandudes.idl.common.ResourceGetter;
 import it.italiandudes.idl.javafx.alert.ErrorAlert;
 import it.italiandudes.idl.javafx.components.SceneController;
@@ -9,10 +13,6 @@ import it.italiandudes.idl.javafx.theme.BasicTheme;
 import it.italiandudes.idl.javafx.theme.BasicThemeHandler;
 import it.italiandudes.idl.logger.Logger;
 import it.italiandudes.idl.starter.IDMain;
-import it.italiandudes.hackathon2025.Hackathon2025;
-import it.italiandudes.hackathon2025.javafx.scene.SceneMainMenu;
-import it.italiandudes.hackathon2025.javafx.utils.Settings;
-import it.italiandudes.hackathon2025.utils.Defs;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;

@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!--suppress JavaFxDefaultTag -->
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.layout.AnchorPane?>
-
-<!--suppress JavaFxDefaultTag -->
+<?import javafx.scene.layout.*?>
 <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/21.0.7" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.italiandudes.hackathon2025.javafx.controllers.panel.ControllerScenePanelTabActuators">
    <padding>
       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

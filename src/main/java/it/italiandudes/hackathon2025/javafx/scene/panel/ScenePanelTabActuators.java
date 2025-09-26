@@ -4,7 +4,6 @@ import it.italiandudes.hackathon2025.javafx.Client;
 import it.italiandudes.hackathon2025.javafx.JFXDefs;
 import it.italiandudes.hackathon2025.javafx.controllers.panel.ControllerScenePanelMain;
 import it.italiandudes.hackathon2025.javafx.controllers.panel.ControllerScenePanelTabActuators;
-import it.italiandudes.hackathon2025.javafx.controllers.panel.ControllerScenePanelTabSensors;
 import it.italiandudes.hackathon2025.utils.Defs;
 import it.italiandudes.idl.common.ResourceGetter;
 import it.italiandudes.idl.javafx.components.SceneController;

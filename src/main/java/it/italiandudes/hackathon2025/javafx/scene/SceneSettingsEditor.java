@@ -1,12 +1,12 @@
 package it.italiandudes.hackathon2025.javafx.scene;
 
-import it.italiandudes.idl.common.ResourceGetter;
-import it.italiandudes.idl.javafx.components.SceneController;
-import it.italiandudes.idl.logger.Logger;
 import it.italiandudes.hackathon2025.javafx.Client;
 import it.italiandudes.hackathon2025.javafx.JFXDefs;
 import it.italiandudes.hackathon2025.javafx.controllers.ControllerSceneSettingsEditor;
 import it.italiandudes.hackathon2025.utils.Defs;
+import it.italiandudes.idl.common.ResourceGetter;
+import it.italiandudes.idl.javafx.components.SceneController;
+import it.italiandudes.idl.logger.Logger;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import org.jetbrains.annotations.NotNull;

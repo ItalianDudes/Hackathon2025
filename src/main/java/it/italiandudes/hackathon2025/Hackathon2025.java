@@ -1,10 +1,10 @@
 package it.italiandudes.hackathon2025;
 
+import it.italiandudes.hackathon2025.javafx.Client;
+import it.italiandudes.hackathon2025.utils.Defs;
 import it.italiandudes.idl.logger.InfoFlags;
 import it.italiandudes.idl.logger.Logger;
 import it.italiandudes.idl.starter.IDMain;
-import it.italiandudes.hackathon2025.javafx.Client;
-import it.italiandudes.hackathon2025.utils.Defs;
 
 public final class Hackathon2025 {
 

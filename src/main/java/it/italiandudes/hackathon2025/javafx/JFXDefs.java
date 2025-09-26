@@ -1,7 +1,7 @@
 package it.italiandudes.hackathon2025.javafx;
 
-import it.italiandudes.idl.common.ResourceGetter;
 import it.italiandudes.hackathon2025.utils.Defs;
+import it.italiandudes.idl.common.ResourceGetter;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 import javafx.stage.Screen;
