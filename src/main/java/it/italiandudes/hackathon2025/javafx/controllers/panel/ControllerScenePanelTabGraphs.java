@@ -4,7 +4,7 @@ import it.italiandudes.hackathon2025.javafx.components.ConfigurableTabController
 import it.italiandudes.idl.javafx.JFXUtils;
 import javafx.fxml.FXML;
 
-public final class ControllerScenePanelTabControls extends ConfigurableTabController {
+public final class ControllerScenePanelTabGraphs extends ConfigurableTabController {
 
     // Initialize
     @FXML

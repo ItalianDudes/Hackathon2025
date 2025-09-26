@@ -25,7 +25,9 @@ CREATE TABLE IF NOT EXISTS sensors (
     name TEXT NOT NULL,
     ip TEXT NOT NULL,
     port INTEGER NOT NULL,
-    output_type TEXT NOT NULL
+    output_type TEXT NOT NULL,
+    unit_of_measurement TEXT NOT NULL,
+    preset TEXT
 );
 
 -- Table: Actuators
@@ -38,5 +40,9 @@ CREATE TABLE IF NOT EXISTS actuators (
     ip TEXT NOT NULL,
     port INTEGER NOT NULL,
     input_type TEXT NOT NULL,
-    allow_override INTEGER NOT NULL DEFAULT 0
+    value TEXT NOT NULL,
+    min_value TEXT NOT NULL,
+    max_value TEXT NOT NULL,
+    allow_override INTEGER NOT NULL DEFAULT 0,
+    is_override_active INTEGER NOT NULL DEFAULT 0
 );

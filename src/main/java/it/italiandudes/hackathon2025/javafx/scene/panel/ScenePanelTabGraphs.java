@@ -3,7 +3,7 @@ package it.italiandudes.hackathon2025.javafx.scene.panel;
 import it.italiandudes.hackathon2025.javafx.Client;
 import it.italiandudes.hackathon2025.javafx.JFXDefs;
 import it.italiandudes.hackathon2025.javafx.controllers.panel.ControllerScenePanelMain;
-import it.italiandudes.hackathon2025.javafx.controllers.panel.ControllerScenePanelTabTrends;
+import it.italiandudes.hackathon2025.javafx.controllers.panel.ControllerScenePanelTabGraphs;
 import it.italiandudes.hackathon2025.utils.Defs;
 import it.italiandudes.idl.common.ResourceGetter;
 import it.italiandudes.idl.javafx.components.SceneController;
@@ -16,7 +16,7 @@ import org.jetbrains.annotations.Nullable;
 import java.io.IOException;
 import java.util.Objects;
 
-public final class ScenePanelTabTrends {
+public final class ScenePanelTabGraphs {
 
     // Scene Generator
     @NotNull
@@ -26,9 +26,9 @@ public final class ScenePanelTabTrends {
     @Nullable
     private static SceneController genScene(@NotNull final ControllerScenePanelMain mainController) {
         try {
-            FXMLLoader loader = new FXMLLoader(ResourceGetter.getResource(JFXDefs.Resources.FXML.Panel.FXML_PANEL_TAB_TRENDS));
+            FXMLLoader loader = new FXMLLoader(ResourceGetter.getResource(JFXDefs.Resources.FXML.Panel.FXML_PANEL_TAB_GRAPHS));
             Parent root = loader.load();
-            ControllerScenePanelTabTrends controller = loader.getController();
+            ControllerScenePanelTabGraphs controller = loader.getController();
             controller.setMainController(mainController);
             controller.configurationComplete();
             return new SceneController(root, controller);

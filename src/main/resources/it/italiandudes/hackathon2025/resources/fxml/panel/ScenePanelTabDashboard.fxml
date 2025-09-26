@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -20,6 +21,7 @@
         <rowConstraints>
           <RowConstraints valignment="CENTER" vgrow="NEVER" />
           <RowConstraints valignment="CENTER" vgrow="NEVER" />
+            <RowConstraints valignment="CENTER" vgrow="ALWAYS" />
         </rowConstraints>
          <children>
             <GridPane>
@@ -36,7 +38,7 @@
                         <Font name="System Bold" size="32.0" />
                      </font>
                   </Label>
-                  <GridPane hgap="20.0" GridPane.rowIndex="1">
+                  <GridPane hgap="20.0" vgap="5.0" GridPane.rowIndex="1">
                     <columnConstraints>
                       <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" />
                       <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" />
@@ -95,7 +97,7 @@
                         <Font name="System Bold" size="32.0" />
                      </font>
                   </Label>
-                  <GridPane hgap="20.0" GridPane.rowIndex="1">
+                  <GridPane hgap="20.0" vgap="5.0" GridPane.rowIndex="1">
                      <columnConstraints>
                         <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" />
                         <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" />
@@ -103,6 +105,8 @@
                      <rowConstraints>
                         <RowConstraints valignment="CENTER" vgrow="NEVER" />
                         <RowConstraints valignment="CENTER" vgrow="NEVER" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="NEVER" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="NEVER" />
                      </rowConstraints>
                      <children>
                         <Label text="Nome Settore:">
@@ -125,8 +129,78 @@
                               <Font size="20.0" />
                            </font>
                         </Label>
+                        <Label text="Sensori Registrati:" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="labelSectorRegisteredSensors" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label text="Attuatori Registrati:" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="labelSectorRegisteredActuators" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
                      </children>
                   </GridPane>
+               </children>
+            </GridPane>
+            <GridPane GridPane.rowIndex="2">
+               <columnConstraints>
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints valignment="CENTER" vgrow="NEVER" />
+                  <RowConstraints valignment="CENTER" vgrow="NEVER" />
+                  <RowConstraints valignment="CENTER" vgrow="ALWAYS" />
+               </rowConstraints>
+               <children>
+                  <Label fx:id="labelSectorID1" text="ALLARMI">
+                     <font>
+                        <Font name="System Bold" size="32.0" />
+                     </font>
+                  </Label>
+                  <GridPane hgap="20.0" vgap="5.0" GridPane.rowIndex="1">
+                     <columnConstraints>
+                        <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" />
+                        <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints valignment="CENTER" vgrow="NEVER" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="NEVER" />
+                     </rowConstraints>
+                     <children>
+                        <Label text="Allarmi Attivi:">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="labelSectorActiveAlarms" GridPane.columnIndex="1">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label text="Override Attivi:" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="labelSectorActiveOverrides" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </GridPane>
+                  <ListView fx:id="listViewWarnings" maxHeight="1.7976931348623157E308" prefHeight="300.0" GridPane.rowIndex="2" />
                </children>
             </GridPane>
          </children>

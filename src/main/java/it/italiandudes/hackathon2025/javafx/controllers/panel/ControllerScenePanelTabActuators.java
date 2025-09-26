@@ -4,6 +4,7 @@ import it.italiandudes.hackathon2025.data.Actuator;
 import it.italiandudes.hackathon2025.data.Sector;
 import it.italiandudes.hackathon2025.db.DBManager;
 import it.italiandudes.hackathon2025.javafx.Client;
+import it.italiandudes.hackathon2025.javafx.components.ComponentActuator;
 import it.italiandudes.hackathon2025.javafx.components.ConfigurableTabController;
 import it.italiandudes.hackathon2025.javafx.controllers.panel.popup.ControllerScenePanelMainPopupAddActuator;
 import it.italiandudes.hackathon2025.javafx.scene.panel.popup.ScenePanelMainPopupAddActuator;
@@ -28,15 +29,21 @@ public final class ControllerScenePanelTabActuators extends ConfigurableTabContr
     // Attributes
     @NotNull private final ArrayList<@NotNull Actuator> actuators = new ArrayList<>();
 
+    // Methods
+    @NotNull
+    public ArrayList<@NotNull Actuator> getActuators() {
+        return actuators;
+    }
+
     // Graphic Elements
-    @FXML private ListView<Actuator> listViewActuators;
+    @FXML private ListView<ComponentActuator> listViewActuators;
 
     // Initialize
     @FXML
     private void initialize() {
         JFXUtils.startVoidServiceTask(() -> {
             while (!super.isConfigurationComplete()) Thread.onSpinWait();
-            reloadActuatorListView();
+            refreshTabData();
         });
     }
 
@@ -55,18 +62,19 @@ public final class ControllerScenePanelTabActuators extends ConfigurableTabContr
             popupStage.setTitle("Aggiungi Attuatore");
             popupStage.showAndWait();
             if (controller.isActuatorAdded()) {
-                reloadActuatorListView();
+                refreshTabData();
             }
         });
         contextMenu.getItems().add(addActuator);
 
-        Actuator selectedActuator = listViewActuators.getSelectionModel().getSelectedItem();
-        if (selectedActuator != null) {
+        ComponentActuator selectedActuatorComponent = listViewActuators.getSelectionModel().getSelectedItem();
+        if (selectedActuatorComponent != null) {
+            Actuator selectedActuator = selectedActuatorComponent.getActuator();
             MenuItem removeActuator = new MenuItem("Rimuovi Attuatore");
             removeActuator.setOnAction(actionEvent -> JFXUtils.startVoidServiceTask(() -> {
                 try {
                     selectedActuator.delete();
-                    reloadActuatorListView();
+                    refreshTabData();
                 } catch (SQLException e) {
                     Client.showMessageAndGoToMenu(e);
                 }
@@ -81,13 +89,14 @@ public final class ControllerScenePanelTabActuators extends ConfigurableTabContr
         contextMenu.setAutoHide(true);
         contextMenu.show(Client.getStage(), event.getScreenX(), event.getScreenY());
     }
-    private void reloadActuatorListView() {
+    private void refreshTabData() {
         JFXUtils.startVoidServiceTask(() -> {
             try {
                 loadActuatorsFromDB();
                 Platform.runLater(() -> {
                     listViewActuators.getItems().clear();
-                    listViewActuators.getItems().setAll(actuators);
+                    listViewActuators.getItems().setAll(actuators.stream().map(ComponentActuator::new).toList());
+                    // super.getMainController().getControllerAnalytics().refreshTerrainAndSectorInfo();
                 });
             } catch (SQLException e) {
                 Client.showMessageAndGoToMenu(e);

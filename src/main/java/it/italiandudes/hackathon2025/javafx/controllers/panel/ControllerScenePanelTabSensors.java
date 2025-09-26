@@ -28,6 +28,12 @@ public final class ControllerScenePanelTabSensors extends ConfigurableTabControl
     // Attributes
     @NotNull private final ArrayList<@NotNull Sensor> sensors = new ArrayList<>();
 
+    // Methods
+    @NotNull
+    public ArrayList<@NotNull Sensor> getSensors() {
+        return sensors;
+    }
+
     // Graphic Elements
     @FXML private ListView<Sensor> listViewSensors;
 
@@ -36,7 +42,7 @@ public final class ControllerScenePanelTabSensors extends ConfigurableTabControl
     private void initialize() {
         JFXUtils.startVoidServiceTask(() -> {
             while (!super.isConfigurationComplete()) Thread.onSpinWait();
-            reloadSensorListView();
+            refreshTabData();
         });
     }
 
@@ -55,7 +61,7 @@ public final class ControllerScenePanelTabSensors extends ConfigurableTabControl
             popupStage.setTitle("Aggiungi Sensore");
             popupStage.showAndWait();
             if (controller.isSensorAdded()) {
-                reloadSensorListView();
+                refreshTabData();
             }
         });
         contextMenu.getItems().add(addSensor);
@@ -66,7 +72,7 @@ public final class ControllerScenePanelTabSensors extends ConfigurableTabControl
             removeSensor.setOnAction(actionEvent -> JFXUtils.startVoidServiceTask(() -> {
                 try {
                     selectedSensor.delete();
-                    reloadSensorListView();
+                    refreshTabData();
                 } catch (SQLException e) {
                     Client.showMessageAndGoToMenu(e);
                 }
@@ -81,7 +87,7 @@ public final class ControllerScenePanelTabSensors extends ConfigurableTabControl
         contextMenu.setAutoHide(true);
         contextMenu.show(Client.getStage(), event.getScreenX(), event.getScreenY());
     }
-    private void reloadSensorListView() {
+    private void refreshTabData() {
         JFXUtils.startVoidServiceTask(() -> {
             try {
                 loadSensorsFromDB();

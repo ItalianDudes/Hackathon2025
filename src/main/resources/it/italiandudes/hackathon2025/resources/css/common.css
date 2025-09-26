@@ -29,6 +29,10 @@ Verde Chiaro: #30AB66;
     -fx-faint-focus-color: tranparent;
 }
 
+.list-cell {
+    -fx-font-size: 24px;
+}
+
 .list-cell:empty {
     -fx-background-color: transparent;
 }

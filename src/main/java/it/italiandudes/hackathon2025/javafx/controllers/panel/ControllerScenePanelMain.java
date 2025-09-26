@@ -42,7 +42,6 @@ public final class ControllerScenePanelMain {
     // Tab SceneControllers
     private SceneController sceneControllerAnalytics = null;
     private SceneController sceneControllerTrends = null;
-    private SceneController sceneControllerControls = null;
     private SceneController sceneControllerForecast = null;
     private SceneController sceneControllerSensors = null;
     private SceneController sceneControllerActuators = null;
@@ -61,12 +60,8 @@ public final class ControllerScenePanelMain {
         return (ControllerScenePanelTabActuators) sceneControllerActuators.getController();
     }
     @NotNull
-    public ControllerScenePanelTabTrends getControllerTrends() {
-        return (ControllerScenePanelTabTrends) sceneControllerTrends.getController();
-    }
-    @NotNull
-    public ControllerScenePanelTabControls getControllerControls() {
-        return (ControllerScenePanelTabControls) sceneControllerControls.getController();
+    public ControllerScenePanelTabGraphs getControllerTrends() {
+        return (ControllerScenePanelTabGraphs) sceneControllerTrends.getController();
     }
     @NotNull
     public ControllerScenePanelTabForecast getControllerForecast() {
@@ -95,18 +90,15 @@ public final class ControllerScenePanelMain {
             } else {
                 tabPaneSector.getSelectionModel().selectFirst();
                 tabPaneSector.setVisible(true);
-                getControllerAnalytics().loadTerrainAndSectorInfo();
+                refreshTabPaneData();
             }
         });
 
         sceneControllerAnalytics = ScenePanelTabDashboard.getScene(this);
         tabAnalytics.setContent(sceneControllerAnalytics.getParent());
 
-        sceneControllerTrends = ScenePanelTabTrends.getScene(this);
+        sceneControllerTrends = ScenePanelTabGraphs.getScene(this);
         tabTrends.setContent(sceneControllerTrends.getParent());
-
-        sceneControllerControls = ScenePanelTabControls.getScene(this);
-        tabControls.setContent(sceneControllerControls.getParent());
 
         sceneControllerForecast = ScenePanelTabForecast.getScene(this);
         tabForecast.setContent(sceneControllerForecast.getParent());
@@ -118,6 +110,11 @@ public final class ControllerScenePanelMain {
         tabActuators.setContent(sceneControllerActuators.getParent());
 
         reloadTerrainListView();
+    }
+
+    // Refresh Data
+    public void refreshTabPaneData() {
+        getControllerAnalytics().refreshTerrainAndSectorInfo();
     }
 
     // EDT

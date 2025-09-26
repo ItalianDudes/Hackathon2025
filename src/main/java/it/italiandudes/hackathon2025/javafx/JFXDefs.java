@@ -38,8 +38,7 @@ public final class JFXDefs {
                 private static final String FXML_PANEL = FXML_DIR + "panel/";
                 public static final String FXML_PANEL_MAIN = FXML_PANEL + "ScenePanelMain.fxml";
                 public static final String FXML_PANEL_TAB_ANALYTICS = FXML_PANEL + "ScenePanelTabDashboard.fxml";
-                public static final String FXML_PANEL_TAB_TRENDS = FXML_PANEL + "ScenePanelTabTrends.fxml";
-                public static final String FXML_PANEL_TAB_CONTROLS = FXML_PANEL + "ScenePanelTabControls.fxml";
+                public static final String FXML_PANEL_TAB_GRAPHS = FXML_PANEL + "ScenePanelTabGraphs.fxml";
                 public static final String FXML_PANEL_TAB_FORECAST = FXML_PANEL + "ScenePanelTabForecast.fxml";
                 public static final String FXML_PANEL_TAB_SENSORS = FXML_PANEL + "ScenePanelTabSensors.fxml";
                 public static final String FXML_PANEL_TAB_ACTUATORS = FXML_PANEL + "ScenePanelTabActuators.fxml";

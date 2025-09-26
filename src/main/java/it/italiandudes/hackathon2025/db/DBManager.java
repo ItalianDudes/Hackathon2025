@@ -35,6 +35,9 @@ public final class DBManager {
         if (ps == null) throw new SQLException("Database connection is null");
         return ps.executeQuery();
     }
+    public static boolean isConnectionOpen() {
+        return dbConnection != null;
+    }
     public static void connectToDB(@NotNull final File DB_PATH) throws IOException, SQLException {
         if (!DB_PATH.exists() || DB_PATH.isDirectory()) throw new IOException("This db doesn't exist");
         setConnection(DB_PATH.getAbsolutePath());

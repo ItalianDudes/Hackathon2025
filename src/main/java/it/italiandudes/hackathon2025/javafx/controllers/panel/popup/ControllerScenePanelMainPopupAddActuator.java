@@ -39,6 +39,9 @@ public final class ControllerScenePanelMainPopupAddActuator {
     @FXML private TextField textFieldName;
     @FXML private TextField textFieldIP;
     @FXML private Spinner<Integer> spinnerPort;
+    @FXML private TextField textFieldMinValue;
+    @FXML private TextField textFieldValue;
+    @FXML private TextField textFieldMaxValue;
     @FXML private ComboBox<DataType> comboBoxDataType;
     @FXML private CheckBox checkBoxAllowOverride;
 
@@ -82,24 +85,89 @@ public final class ControllerScenePanelMainPopupAddActuator {
             new ErrorAlert(Client.getStage(), "ERRORE", "Errore di Inserimento", "Il campo \"Porta\" e' obbligatorio.");
             return;
         }
-        DataType outputType = comboBoxDataType.getSelectionModel().getSelectedItem();
-        if (outputType == null) {
+
+        boolean allowOverride = checkBoxAllowOverride.isSelected();
+
+        DataType inputType = comboBoxDataType.getSelectionModel().getSelectedItem();
+        if (inputType == null) {
             new ErrorAlert(Client.getStage(), "ERRORE", "Errore di Inserimento", "Il campo \"Tipo di Dato\" e' obbligatorio.");
             return;
         }
-        boolean allowOverride = checkBoxAllowOverride.isSelected();
-        JFXUtils.startVoidServiceTask(() -> {
+        String minValueText = textFieldMinValue.getText();
+        if (minValueText == null || minValueText.isBlank()) {
+            new ErrorAlert(Client.getStage(), "ERRORE", "Errore di Inserimento", "Il campo \"Valore Minimo\" e' obbligatorio.");
+            return;
+        }
+        String valueText = textFieldValue.getText();
+        if (valueText == null || valueText.isBlank()) {
+            new ErrorAlert(Client.getStage(), "ERRORE", "Errore di Inserimento", "Il campo \"Valore Attuale\" e' obbligatorio.");
+            return;
+        }
+        String maxValueText = textFieldMaxValue.getText();
+        if (maxValueText == null || maxValueText.isBlank()) {
+            new ErrorAlert(Client.getStage(), "ERRORE", "Errore di Inserimento", "Il campo \"Valore Massimo\" e' obbligatorio.");
+            return;
+        }
+
+        if (inputType == DataType.INTEGER) {
             try {
-                actuator = new Actuator(sector, name, ip, port, outputType, allowOverride);
-                Platform.runLater(() -> {
-                    new InformationAlert(Client.getStage(),"SUCCESSO", "Salvataggio Completato", "Salvataggio sensore avvenuto con successo!");
-                    backToPanel();
+                int minValue = Integer.parseInt(minValueText);
+                int value = Integer.parseInt(valueText);
+                int maxValue = Integer.parseInt(maxValueText);
+
+                if (minValue >= maxValue) {
+                    new ErrorAlert(Client.getStage(), "ERRORE", "Errore di Inserimento", "Il campo \"Valore Minimo\" deve contenere un numero intero valido minore di \"Valore Massimo\".");
+                    return;
+                } else if (value < minValue || value > maxValue) {
+                    new ErrorAlert(Client.getStage(), "ERRORE", "Errore di Inserimento", "Il campo \"Valore Attuale\" deve contenere un numero intero valido maggiore o uguale a \"Valore Minimo\" e minore o uguale a \"Valore Massimo\".");
+                    return;
+                }
+
+                JFXUtils.startVoidServiceTask(() -> {
+                    try {
+                        actuator = new Actuator(sector, name, ip, port, value, minValue, maxValue, inputType, allowOverride);
+                        Platform.runLater(() -> {
+                            new InformationAlert(Client.getStage(),"SUCCESSO", "Salvataggio Completato", "Salvataggio sensore avvenuto con successo!");
+                            backToPanel();
+                        });
+                    } catch (SQLException e) {
+                        Platform.runLater(this::backToPanel);
+                        Client.showMessageAndGoToMenu(e);
+                    }
                 });
-            } catch (SQLException e) {
-                Platform.runLater(this::backToPanel);
-                Client.showMessageAndGoToMenu(e);
+            } catch (NumberFormatException e) {
+                new ErrorAlert(Client.getStage(), "ERRORE", "Errore di Inserimento", "I campi valore devono contenere numeri interi validi.");
             }
-        });
+        } else if (inputType == DataType.DOUBLE) {
+            try {
+                double minValue = Double.parseDouble(minValueText);
+                double value = Double.parseDouble(valueText);
+                double maxValue = Double.parseDouble(maxValueText);
+
+                if (minValue >= maxValue) {
+                    new ErrorAlert(Client.getStage(), "ERRORE", "Errore di Inserimento", "Il campo \"Valore Minimo\" deve contenere un numero decimale valido minore di \"Valore Massimo\".");
+                    return;
+                } else if (value < minValue || value > maxValue) {
+                    new ErrorAlert(Client.getStage(), "ERRORE", "Errore di Inserimento", "Il campo \"Valore Attuale\" deve contenere un numero decimale valido maggiore o uguale a \"Valore Minimo\" e minore o uguale a \"Valore Massimo\".");
+                    return;
+                }
+
+                JFXUtils.startVoidServiceTask(() -> {
+                    try {
+                        actuator = new Actuator(sector, name, ip, port, value, minValue, maxValue, inputType, allowOverride);
+                        Platform.runLater(() -> {
+                            new InformationAlert(Client.getStage(),"SUCCESSO", "Salvataggio Completato", "Salvataggio sensore avvenuto con successo!");
+                            backToPanel();
+                        });
+                    } catch (SQLException e) {
+                        Platform.runLater(this::backToPanel);
+                        Client.showMessageAndGoToMenu(e);
+                    }
+                });
+            } catch (NumberFormatException e) {
+                new ErrorAlert(Client.getStage(), "ERRORE", "Errore di Inserimento", "I campi valore devono contenere numeri interi validi.");
+            }
+        }
     }
 
 }

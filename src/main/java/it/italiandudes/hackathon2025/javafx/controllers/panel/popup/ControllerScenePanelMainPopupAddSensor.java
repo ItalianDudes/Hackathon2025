@@ -3,6 +3,7 @@ package it.italiandudes.hackathon2025.javafx.controllers.panel.popup;
 import it.italiandudes.hackathon2025.data.DataType;
 import it.italiandudes.hackathon2025.data.Sector;
 import it.italiandudes.hackathon2025.data.Sensor;
+import it.italiandudes.hackathon2025.data.SensorPreset;
 import it.italiandudes.hackathon2025.javafx.Client;
 import it.italiandudes.idl.javafx.JFXUtils;
 import it.italiandudes.idl.javafx.UIElementConfigurator;
@@ -42,12 +43,15 @@ public final class ControllerScenePanelMainPopupAddSensor {
     @FXML private TextField textFieldName;
     @FXML private TextField textFieldIP;
     @FXML private Spinner<Integer> spinnerPort;
+    @FXML private ComboBox<SensorPreset> comboBoxSensorPreset;
+    @FXML private TextField textFieldUnitOfMeasurement;
     @FXML private ComboBox<DataType> comboBoxDataType;
 
     // Initialize
     @FXML
     private void initialize() {
         comboBoxDataType.getItems().addAll(DataType.values());
+        comboBoxSensorPreset.getItems().addAll(SensorPreset.values());
         spinnerPort.getEditor().setTextFormatter(UIElementConfigurator.configureNewIntegerTextFormatter());
         spinnerPort.setPromptText("Porta");
         spinnerPort.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 65535, 1000, 1));
@@ -60,6 +64,16 @@ public final class ControllerScenePanelMainPopupAddSensor {
     @FXML
     private void backToPanel() {
         textFieldName.getScene().getWindow().hide();
+    }
+    @FXML
+    private void togglePresetFields() {
+        if (comboBoxSensorPreset.getSelectionModel().getSelectedItem() != null) {
+            textFieldUnitOfMeasurement.setDisable(true);
+            comboBoxDataType.setDisable(true);
+        } else {
+            textFieldUnitOfMeasurement.setDisable(false);
+            comboBoxDataType.setDisable(false);
+        }
     }
     @FXML
     private void saveSensor() {
@@ -84,22 +98,43 @@ public final class ControllerScenePanelMainPopupAddSensor {
             new ErrorAlert(Client.getStage(), "ERRORE", "Errore di Inserimento", "Il campo \"Porta\" e' obbligatorio.");
             return;
         }
-        DataType outputType = comboBoxDataType.getSelectionModel().getSelectedItem();
-        if (outputType == null) {
-            new ErrorAlert(Client.getStage(), "ERRORE", "Errore di Inserimento", "Il campo \"Tipo di Dato\" e' obbligatorio.");
-            return;
-        }
-        JFXUtils.startVoidServiceTask(() -> {
-            try {
-                sensor = new Sensor(sector, name, ip, port, outputType);
-                Platform.runLater(() -> {
-                    new InformationAlert(Client.getStage(),"SUCCESSO", "Salvataggio Completato", "Salvataggio sensore avvenuto con successo!");
-                    backToPanel();
-                });
-            } catch (SQLException e) {
-                Platform.runLater(this::backToPanel);
-                Client.showMessageAndGoToMenu(e);
+        SensorPreset sensorPreset = comboBoxSensorPreset.getSelectionModel().getSelectedItem();
+        if (sensorPreset == null) {
+            String unitOfMeasurement = textFieldUnitOfMeasurement.getText();
+            if (unitOfMeasurement == null || unitOfMeasurement.isBlank()) {
+                new ErrorAlert(Client.getStage(), "ERRORE", "Errore di Inserimento", "Il campo \"Unita' di Misura\" e' obbligatorio.");
+                return;
             }
-        });
+            DataType outputType = comboBoxDataType.getSelectionModel().getSelectedItem();
+            if (outputType == null) {
+                new ErrorAlert(Client.getStage(), "ERRORE", "Errore di Inserimento", "Il campo \"Tipo di Dato\" e' obbligatorio.");
+                return;
+            }
+            JFXUtils.startVoidServiceTask(() -> {
+                try {
+                    sensor = new Sensor(sector, name, ip, port, outputType, unitOfMeasurement);
+                    Platform.runLater(() -> {
+                        new InformationAlert(Client.getStage(),"SUCCESSO", "Salvataggio Completato", "Salvataggio sensore avvenuto con successo!");
+                        backToPanel();
+                    });
+                } catch (SQLException e) {
+                    Platform.runLater(this::backToPanel);
+                    Client.showMessageAndGoToMenu(e);
+                }
+            });
+        } else {
+            JFXUtils.startVoidServiceTask(() -> {
+                try {
+                    sensor = new Sensor(sector, name, ip, port, sensorPreset);
+                    Platform.runLater(() -> {
+                        new InformationAlert(Client.getStage(),"SUCCESSO", "Salvataggio Completato", "Salvataggio sensore avvenuto con successo!");
+                        backToPanel();
+                    });
+                } catch (SQLException e) {
+                    Platform.runLater(this::backToPanel);
+                    Client.showMessageAndGoToMenu(e);
+                }
+            });
+        }
     }
 }
